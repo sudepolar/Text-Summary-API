@@ -47,12 +47,12 @@ export const createText = async(textData: {
     textData : string;
 }): Promise<Text> => {
     const dateNow = new Date();
-    const newLoan: Partial<Text> = {
+    const newText: Partial<Text> = {
         ...textData,
         createdAt: dateNow,
     }
-    const loanId: string = await createDocument<Text>(COLLECTION, newLoan);
+    const textId: string = await createDocument<Text>(COLLECTION, newText);
 
-    return structuredClone({ id: loanId, ...newLoan} as Text);
+    return structuredClone({ id: textId, ...newText} as Text);
 }
 
