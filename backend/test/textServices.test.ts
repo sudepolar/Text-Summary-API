@@ -129,7 +129,7 @@ describe("Text Service", () => {
 
     it("should throw error if text summary not found", async () => {
         // Arrange
-        const textId = "text-inexistent";
+        const textId = "HI DEREK";
 
         jest.restoreAllMocks();
 
