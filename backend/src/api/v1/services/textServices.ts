@@ -109,3 +109,17 @@ export const updateText = async (
     
     return structuredClone(updateText);
 }
+
+/**
+ * Deletes a text summary from database
+ * @params id - The ID of the item to delete
+ * @throws Error if item with given ID is not found
+ */
+export const deleteText = async(id:string): Promise<void> => {
+    const text: Text =await getTextById(id);
+    if (!text) {
+        throw new Error(`Text summary not found`)
+    }
+
+    await deleteDocument(COLLECTION, id);
+}
