@@ -37,3 +37,22 @@ export const getAllTexts = async(): Promise<Text[]> => {
         throw error;
     }
 }
+
+/**
+ * Creates a new text summary object
+ * @param textData - The text data for the new text summary
+ * @returns The created text summary with the generated ID
+ */
+export const createText = async(textData: {
+    textData : string;
+}): Promise<Text> => {
+    const dateNow = new Date();
+    const newText: Partial<Text> = {
+        ...textData,
+        createdAt: dateNow,
+    }
+    const textId: string = await createDocument<Text>(COLLECTION, newText);
+
+    return structuredClone({ id: textId, ...newText} as Text);
+}
+
