@@ -44,6 +44,7 @@ export const getAllTexts = async(): Promise<Text[]> => {
  * @returns The created text summary with the generated ID
  */
 export const createText = async(textData: {
+    subject: string;
     textData : string;
 }): Promise<Text> => {
     const dateNow = new Date();

@@ -29,3 +29,32 @@ export const getAllTexts = async (
         next(error);
     }
 };
+
+/**
+ * Controller that retrieves creates a text summary
+ * 
+ * @param {Request} req - The express Request
+ * @param {Response} res - The express Response
+ * @param {NextFunction} next - The exress middleware chaining function
+ * @throws error which will be passed to the global error handler
+ * @returns {void} Sends a JSON response of all tickets stored
+ */
+export const createText = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const { subject, textData } = req.body;
+        
+        const newText: Text = await textServices.createText({
+            subject, textData
+        });
+
+        res.status(HTTP_STATUS.CREATED).json(
+            successResponse(newText, "Text summary created")
+        );
+    } catch (error: unknown) {
+        next(error);
+    }
+}
