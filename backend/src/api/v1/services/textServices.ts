@@ -56,3 +56,27 @@ export const createText = async(textData: {
     return structuredClone({ id: textId, ...newText} as Text);
 }
 
+/**
+ * Retrieves a single text summary by ID from the firestore
+ * @param id - This is the ID of the item to retrieve
+ * @returns The text summary if found
+ */
+export const getTextById = async (id: string): Promise<Text> => {
+    const doc: DocumentSnapshot | null = await getDocumentById(COLLECTION, id);
+
+    if (!doc) {
+        throw new Error(`Item with Id ${id} not found`);
+    }
+
+    const data: DocumentData | undefined = doc.data();
+    // Required: otherwise data will be flagged as possible undefined in code below
+    if (!data) throw new Error("Item data is missing");
+
+    const text: Text = {
+        id: doc.id,
+        ...data,
+        createdAt: data.createdAt?.toDate?.() ?? (data.createdAt?._seconds ? new Date(data.createdAt._seconds * 1000) : new Date())
+    } as Text;
+
+    return structuredClone(text);
+}
