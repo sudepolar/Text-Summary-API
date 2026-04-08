@@ -80,3 +80,32 @@ export const getTextById = async (id: string): Promise<Text> => {
 
     return structuredClone(text);
 }
+
+/**
+ * Updates an existing text summary object
+ * @param id - The ID of the text summary object
+ * @param textData - The fields to update
+ * @returns the updated text
+ * @throws Error if the item with the given ID is not found
+ */
+export const updateText = async (
+    id:string,
+    textData: Pick<Text, "textContent">
+) : Promise<Text> => {
+    const text: Text = await getTextById(id);
+    if (!text) {
+        throw new Error(`Text Summary with ID ${id} not found`);
+    }
+
+    
+    const updateText: Text= {
+        ...text,
+        // Required: formatting issues occurred, createdAt needs to be last.
+        createdAt: text.createdAt,
+    };
+
+
+    await updateDocument<Text>(COLLECTION, id, updateText);
+    
+    return structuredClone(updateText);
+}
