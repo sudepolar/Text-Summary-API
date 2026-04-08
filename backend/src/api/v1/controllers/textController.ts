@@ -99,7 +99,7 @@ export const updateText = async (
  * @throws error which will be passed to the global error handler
  * @returns {void} Sends a JSON response of all tickets stored
  */
-export const deleteTextSummary = async (
+export const deleteText = async (
     req: Request,
     res: Response,
     next: NextFunction
