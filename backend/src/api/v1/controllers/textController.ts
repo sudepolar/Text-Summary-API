@@ -115,3 +115,38 @@ export const deleteTextSummary = async (
         next(error);
     }
 }
+
+/**
+ * Controller that gets a text summary by id
+ * 
+ * @param {Request} req 
+ * @param {Response} res 
+ * @param {NextFunction} next
+ * @throws error which will be passed to the global error handler
+ * @returns {void} Sends a JSON response of an item with the same id
+ */
+export const getTextById = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+
+    try {
+
+        const id: string = String(req.params.id);
+
+        const text: Text = await textServices.getTextById(id);
+
+        res.status(HTTP_STATUS.OK).json(
+            successResponse(text, "Text retrieved successfully")
+        );
+
+    } catch (error) {
+
+        res.status(HTTP_STATUS.NOT_FOUND).json({
+            message: "Text not found"
+        });
+
+    }
+
+};
