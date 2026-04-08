@@ -45,7 +45,7 @@ export const getAllTexts = async(): Promise<Text[]> => {
  */
 export const createText = async(textData: {
     subject: string;
-    textData : string;
+    textContent : string;
 }): Promise<Text> => {
     const dateNow = new Date();
     const newText: Partial<Text> = {

@@ -45,10 +45,10 @@ export const createText = async (
     next: NextFunction
 ): Promise<void> => {
     try {
-        const { subject, textData } = req.body;
+        const { subject, textContent } = req.body;
         
         const newText: Text = await textServices.createText({
-            subject, textData
+            subject, textContent
         });
 
         res.status(HTTP_STATUS.CREATED).json(
@@ -58,3 +58,34 @@ export const createText = async (
         next(error);
     }
 }
+
+/**
+ * Controller that updates a text summary
+ * 
+ * @param {Request} req - The express Request
+ * @param {Response} res - The express Response
+ * @param {NextFunction} next - The exress middleware chaining function
+ * @throws error which will be passed to the global error handler
+ * @returns {void} Sends a JSON response of all tickets stored
+ */
+export const updateText = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const id = String(req.params.id);
+
+        const { textContent } = req.body;
+
+        const updatedText: Text = await textServices.updateText(id, {
+            textContent
+        });
+
+        res.status(HTTP_STATUS.OK).json(
+            successResponse(updatedText, "Text Summary updated")
+        );
+    } catch (error: unknown) {
+        next(error);
+    }
+};
