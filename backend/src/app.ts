@@ -2,7 +2,7 @@
 import express, { Express } from "express";
 import morgan from "morgan";
 
-import itemRoutes from "./api/v1/routes/itemRoutes";
+import textRoutes from "./api/v1/routes/textRoutes";
 
 // initialize the express application
 const app: Express = express();
@@ -45,7 +45,7 @@ app.get("/api/v1/health", (req, res) => {
 
 // Route Imports START
 // "/api/v1/items" will prefix all item routes
-app.use("/api/v1/items", itemRoutes);
+app.use("/api/v1/text-summary", textRoutes);
 
 // Route Imports END
 
