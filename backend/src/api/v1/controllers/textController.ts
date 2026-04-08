@@ -89,3 +89,29 @@ export const updateText = async (
         next(error);
     }
 };
+
+/**
+ * Controller that deletes a textsummary
+ * 
+ * @param {Request} req - The express Request
+ * @param {Response} res - The express Response
+ * @param {NextFunction} next - The exress middleware chaining function
+ * @throws error which will be passed to the global error handler
+ * @returns {void} Sends a JSON response of all tickets stored
+ */
+export const deleteTextSummary = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const id: string = String(req.params.id);
+
+        await textServices.deleteText(id);
+        res.status(HTTP_STATUS.OK).json(
+            successResponse("Loan summary successfully deleted")
+        )
+    } catch (error: unknown) {
+        next(error);
+    }
+}
