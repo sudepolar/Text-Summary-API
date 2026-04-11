@@ -10,7 +10,8 @@
     "start": "ts-node backend/src/server.ts",
     "build": "tsc",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "generate-docs": "ts-node backend/src/api/v1/scripts/generate-openapi.ts && npx @redocly/cli build-docs openapi.json --output docs/index.html"
   },
   "repository": {
     "type": "git",
@@ -39,12 +40,14 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
+    "@redocly/cli": "^2.26.0",
     "@types/dotenv": "^6.1.1",
     "@types/jest": "^30.0.0",
     "@types/multer": "^2.1.0",
     "@types/node": "^24.3.0",
     "@types/pdf-parse": "^1.1.5",
     "@types/supertest": "^6.0.3",
+    "@types/swagger-jsdoc": "^6.0.4",
     "jest": "^30.1.1",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.1",
