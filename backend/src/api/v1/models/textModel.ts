@@ -6,15 +6,17 @@ export interface Text {
     id: string;
     subject: string;
     textContent: string;
+    summary: string;
+    file: FileMetadata | null;
     createdAt: Date;
 }
 
 /**
  * Represents file meta data
  */
-export interface FileMetaData {
+export interface FileMetadata {
     originalName: string;
     mimeType: string;
     sizeBytes: number;
-    uploadedAt: string;
+    uploadedAt: Date;
 }
