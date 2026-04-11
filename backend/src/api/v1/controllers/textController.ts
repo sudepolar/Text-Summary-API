@@ -77,10 +77,10 @@ export const updateText = async (
     try {
         const id = String(req.params.id);
 
-        const { textContent } = req.body;
+        const { summary } = req.body;
 
         const updatedText: Text = await textServices.updateText(id, {
-            textContent
+            summary
         });
 
         res.status(HTTP_STATUS.OK).json(

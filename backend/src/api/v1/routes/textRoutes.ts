@@ -6,8 +6,7 @@ import { upload } from "../middleware/upload";
 import authenticate from "../middleware/authenticate";
 import isAuthorized from "../middleware/authorize";
 import { AuthorizationOptions } from "../models/authorizationOptions";
-import { auth } from "firebase-admin";
-import { valid } from "joi";
+
 const router: Router = express.Router();
 
 // "/api/v1/text-summary" prefixes all below routes
@@ -29,7 +28,7 @@ router.get("/:id",
     isAuthorized({
         hasRole: ["admin"],
         allowSameUser: true,
-    } as AuthorizationOptions),,
+    } as AuthorizationOptions),
     textController.getTextById);
     
 router.put(
