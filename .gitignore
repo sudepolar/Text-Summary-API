@@ -8,4 +8,17 @@ logs/
 *.log
 src\logs
 
-.dotenv/
+venv/
+__pycache__/
+*.pyc
+env/
+.env
+.env.*
+
+# Python env
+backend/python-service/.env
+backend/python-service/.env.*
+backend/python-service/.env
+
+**/.env
+**/.env*

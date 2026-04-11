@@ -1,4 +1,4 @@
-import { Text } from "../models/textModel";
+import { Text, FileMetadata } from "../models/textModel";
 
 import {
     QuerySnapshot,
@@ -13,6 +13,10 @@ import {
     updateDocument,
     deleteDocument,
 } from "../repositories/firestoreRepository";
+
+import { extractTextFromFile } from "../utils/fileExtractor";
+
+import { summarizeText } from "../utils/llmClient";
 
 const COLLECTION: string = "items";
 
@@ -41,15 +45,36 @@ export const getAllTexts = async(): Promise<Text[]> => {
 /**
  * Creates a new text summary object
  * @param textData - The text data for the new text summary
+ * @param file - The file given
  * @returns The created text summary with the generated ID
  */
 export const createText = async(textData: {
     subject: string;
     textContent : string;
-}): Promise<Text> => {
+}, file?: Express.Multer.File): Promise<Text> => {
+
+    let sourceText: string;
+    let fileMetadata: FileMetadata | null = null;
+
+    if (file) {
+        sourceText = await extractTextFromFile(file);
+        fileMetadata = {
+            originalName: file.originalname,
+            mimeType: file.mimetype,
+            sizeBytes: file.size,
+            uploadedAt: new Date(),
+        };
+    } else {
+        sourceText = textData.textContent;
+    }
+
+    const summary = await summarizeText(sourceText);
+
     const dateNow = new Date();
     const newText: Partial<Text> = {
-        ...textData,
+        subject: textData.subject,
+        textContent: sourceText, summary,
+        file: fileMetadata,
         createdAt: dateNow,
     }
     const textId: string = await createDocument<Text>(COLLECTION, newText);

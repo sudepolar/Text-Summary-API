@@ -5,8 +5,8 @@ const LLM_SERVICE_URL = process.env.LLM_SERVICE_URL ?? 'http://localhost:5001';
  * @param text - The text that will be summarized
  * @returns The summary of text in string format
  */
-export async function summariseText(text: string): Promise<string> {
-  const response = await fetch(`${LLM_SERVICE_URL}/summarise`, {
+export async function summarizeText(text: string): Promise<string> {
+  const response = await fetch(`${LLM_SERVICE_URL}/summarize`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ text }),
