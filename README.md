@@ -1,6 +1,3 @@
-initial commit
-
-development branch
 
 ## How To Run Backend Locally
 
@@ -13,3 +10,10 @@ npm run dev
 cd python-service
 source venv/Scripts/activate
 uvicorn main:app --reload --port 5001
+
+4. Download/pull ollama llama3.1:8b
+
+5. Run ollama
+
+command: ollama run llama3.1
+
