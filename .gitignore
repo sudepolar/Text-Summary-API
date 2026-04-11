@@ -23,4 +23,5 @@ backend/python-service/.env
 **/.env
 **/.env*
 
+**/serviceAccount.json
 serviceAccount.json

@@ -11,4 +11,5 @@ npm run dev
 
 3. Terminal 2 - Python
 cd python-service
+source venv/Scripts/activate
 uvicorn main:app --reload --port 5001

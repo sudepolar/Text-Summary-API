@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-class SummariseRequest(BaseModel):
+class SummarizeRequest(BaseModel):
     text: str
 
-class SummariseResponse(BaseModel):
+class SummarizeResponse(BaseModel):
     summary: str

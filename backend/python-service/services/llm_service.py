@@ -1,4 +1,4 @@
-import ollama
+from ollama import AsyncClient
 import pandas as pd
 from config import ROOT_PROMPT
 
@@ -11,8 +11,9 @@ async def generate_summary(text: str) -> str:
     series = pd.Series([text])
     cleaned = series.str.strip().str.replace(r'\s+', ' ', regex=True)[0]
 
-    response = ollama.chat(
-        model="llama3.16",
+    client = AsyncClient()
+    response = await client.chat(
+        model="llama3.1:8b",
         messages=[
             { "role": "system", "content": ROOT_PROMPT },
             { "role": "user",   "content": cleaned }
