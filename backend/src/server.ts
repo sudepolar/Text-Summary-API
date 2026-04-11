@@ -1,10 +1,15 @@
-import app from "./app";
+import dotenv from "dotenv";
+import path from "path";
 
+dotenv.config({
+    path: path.resolve(__dirname, "../.env"),
+});
+import app from "./app";
 // import server type definition
 import { Server } from "http";
 
 // initialize a port as either a string or 3000 by default
-const PORT: string | 3000 = process.env.PORT || 3000;
+const PORT: string | number = process.env.PORT || 3000;
 
 // initialize server for the application to listen for requests on the specified ports
 const server: Server = app.listen(PORT, () => {

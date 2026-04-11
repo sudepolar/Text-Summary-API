@@ -1,11 +1,13 @@
 // import the express application and type definition
 import express, { Express } from "express";
 import morgan from "morgan";
-
-import itemRoutes from "./api/v1/routes/itemRoutes";
-
+import textRoutes from "./api/v1/routes/textRoutes";
+import setupSwagger from "./config/swagger";
 // initialize the express application
 const app: Express = express();
+
+// Setup Swagger
+setupSwagger(app);
 
 // Interface for health check response
 // An interface in TypeScript defines the structure or "shape" of an object.
@@ -45,7 +47,7 @@ app.get("/api/v1/health", (req, res) => {
 
 // Route Imports START
 // "/api/v1/items" will prefix all item routes
-app.use("/api/v1/items", itemRoutes);
+app.use("/api/v1/text-summary", textRoutes);
 
 // Route Imports END
 

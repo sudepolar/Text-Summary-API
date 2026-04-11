@@ -1,0 +1,29 @@
+name: Deploy Documentation
+
+on:
+    workflow_dispatch: # Only run when manually triggered
+
+jobs:
+    deploy-docs:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20.x"
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Generate documentation
+              run: npm run generate-docs
+
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./docs
+                  publish_branch: gh-pages
