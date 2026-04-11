@@ -2,9 +2,12 @@
 import express, { Express } from "express";
 import morgan from "morgan";
 import textRoutes from "./api/v1/routes/textRoutes";
-
+import setupSwagger from "./config/swagger";
 // initialize the express application
 const app: Express = express();
+
+// Setup Swagger
+setupSwagger(app);
 
 // Interface for health check response
 // An interface in TypeScript defines the structure or "shape" of an object.
