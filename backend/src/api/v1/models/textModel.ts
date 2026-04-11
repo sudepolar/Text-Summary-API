@@ -8,3 +8,13 @@ export interface Text {
     textContent: string;
     createdAt: Date;
 }
+
+/**
+ * Represents file meta data
+ */
+export interface FileMetaData {
+    originalName: string;
+    mimeType: string;
+    sizeBytes: number;
+    uploadedAt: string;
+}
