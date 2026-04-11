@@ -116,7 +116,7 @@ export const getTextById = async (id: string): Promise<Text> => {
  */
 export const updateText = async (
     id:string,
-    textData: Pick<Text, "textContent">
+    textData: Pick<Text, "summary">
 ) : Promise<Text> => {
     const text: Text = await getTextById(id);
     if (!text) {
