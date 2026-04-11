@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "ts-node backend/src/server.ts",
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch"
