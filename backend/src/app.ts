@@ -1,7 +1,6 @@
 // import the express application and type definition
 import express, { Express } from "express";
 import morgan from "morgan";
-
 import textRoutes from "./api/v1/routes/textRoutes";
 
 // initialize the express application

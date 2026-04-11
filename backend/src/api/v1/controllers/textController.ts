@@ -47,9 +47,10 @@ export const createText = async (
     try {
         const { subject, textContent } = req.body;
         
-        const newText: Text = await textServices.createText({
-            subject, textContent
-        });
+        const newText: Text = await textServices.createText(
+            { subject, textContent},
+            req.file
+        );
 
         res.status(HTTP_STATUS.CREATED).json(
             successResponse(newText, "Text summary created")

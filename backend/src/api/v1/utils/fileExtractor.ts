@@ -1,10 +1,3 @@
-/** The ESM build of pdf-parse doesnt have a default export
- * I had to force TypeScript to resolve by using createRequire
-*/
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const pdfParse = require('pdf-parse');
-
 /**
  * extracts text from allows files
  * @param file - the file given
@@ -18,6 +11,7 @@ export async function extractTextFromFile(file: Express.Multer.File): Promise<st
       return file.buffer.toString('utf-8');
 
     case 'pdf':
+      const pdfParse = require("pdf-parse");
       const pdfData = await pdfParse.default(file.buffer);
       return pdfData.text;
 
