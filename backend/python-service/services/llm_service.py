@@ -12,7 +12,7 @@ async def generate_summary(text: str) -> str:
     cleaned = series.str.strip().str.replace(r'\s+', ' ', regex=True)[0]
 
     response = ollama.chat(
-        model="llama3",
+        model="llama3.16",
         messages=[
             { "role": "system", "content": ROOT_PROMPT },
             { "role": "user",   "content": cleaned }
