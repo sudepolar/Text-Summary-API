@@ -130,7 +130,7 @@ export const updateText = async (
         createdAt: text.createdAt,
     };
 
-
+    if (textData.summary !== undefined) updateText.summary = textData.summary;
     await updateDocument<Text>(COLLECTION, id, updateText);
     
     return structuredClone(updateText);
