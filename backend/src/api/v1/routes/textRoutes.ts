@@ -23,7 +23,7 @@ const router: Router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/TextSummaryListResponse'
+ *               $ref: '#/components/schemas/TextSummaryListResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
  *       '403':
@@ -59,7 +59,7 @@ router.get("/",
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/TextSummaryResponse'
+ *               $ref: '#/components/schemas/TextSummaryResponse'
  *       '400':
  *         description: Bad request - Invalid file or missing required fields
  *       '401':
@@ -95,7 +95,7 @@ router.post(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/TextSummaryResponse'
+ *               $ref: '#/components/schemas/TextSummaryResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
  *       '403':
@@ -131,14 +131,14 @@ router.get("/:id",
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/validations/TextSummaryUpdateRequest'
+ *             $ref: '#/components/schemas/TextSummaryUpdateRequest'
  *     responses:
  *       '200':
  *         description: Text summary updated successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/TextSummaryResponse'
+ *               $ref: '#/components/schemas/TextSummaryResponse'
  *       '400':
  *         description: Bad request - Validation failed for request body
  *       '401':

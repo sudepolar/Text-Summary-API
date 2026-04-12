@@ -18,6 +18,145 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       }
+    },
+    "schemas": {
+      "CreateTextSummaryRequest": {
+        "type": "object",
+        "required": [
+          "textContent"
+        ],
+        "properties": {
+          "textContent": {
+            "type": "string",
+            "description": "The text content to be summarized",
+            "example": "This is how to make a furry suit lol"
+          }
+        }
+      },
+      "UpdateTextSummaryRequest": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "description": "The updated summary of the text content",
+            "example": "A brief summary of the original text content."
+          }
+        }
+      },
+      "UpdateTextSummaryParams": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the text summary to update",
+            "example": "text_abc123"
+          }
+        }
+      },
+      "TextSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the text summary",
+            "example": "text_abc123"
+          },
+          "summary": {
+            "type": "string",
+            "description": "The generated summary of the text content",
+            "example": "A brief summary of the original text content."
+          }
+        }
+      },
+      "TextSummaryListResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier of the text summary",
+              "example": "text_abc123"
+            },
+            "summary": {
+              "type": "string",
+              "description": "The generated summary of the text content",
+              "example": "A brief summary of the original text content."
+            }
+          }
+        }
+      },
+      "TextSummaryUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "description": "The updated summary of the text content",
+            "example": "Updated summary text."
+          }
+        }
+      },
+      "SetCustomClaimsRequest": {
+        "type": "object",
+        "required": [
+          "uid",
+          "role"
+        ],
+        "properties": {
+          "uid": {
+            "type": "string",
+            "description": "The user ID to set custom claims on",
+            "example": "user_abc123"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "admin"
+            ],
+            "description": "The role to assign to the user",
+            "example": "admin"
+          }
+        }
+      },
+      "SetCustomClaimsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Success message",
+            "example": "Custom claims set successfully"
+          }
+        }
+      },
+      "UserDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "description": "Unique identifier for the user",
+            "example": "user_abc123"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address",
+            "example": "user@example.com"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "admin"
+            ],
+            "description": "User's role in the system",
+            "example": "admin"
+          }
+        }
+      }
     }
   },
   "security": [
@@ -25,6 +164,313 @@
       "bearerAuth": []
     }
   ],
-  "paths": {},
+  "paths": {
+    "/api/v1/admin/setCustomClaims": {
+      "post": {
+        "summary": "Set custom claims on a user's authentication token",
+        "tags": [
+          "Admin"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetCustomClaimsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Custom claims set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetCustomClaimsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication token"
+          },
+          "403": {
+            "description": "Forbidden - Insufficient permissions to set custom claims"
+          },
+          "404": {
+            "description": "Not found - Target user does not exist"
+          }
+        }
+      }
+    },
+    "/api/v1/text-summary": {
+      "get": {
+        "summary": "Retrieve all text summaries",
+        "tags": [
+          "TextSummary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of all text summaries retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextSummaryListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication token"
+          },
+          "403": {
+            "description": "Forbidden - Insufficient role permissions (requires admin)"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new text summary with file upload",
+        "tags": [
+          "TextSummary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "File to upload for text summarization"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Text summary created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextSummaryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid file or missing required fields"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication token"
+          },
+          "403": {
+            "description": "Forbidden - Insufficient role permissions (requires admin or user)"
+          }
+        }
+      }
+    },
+    "/api/v1/text-summary/{id}": {
+      "get": {
+        "summary": "Retrieve a text summary by ID",
+        "tags": [
+          "TextSummary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique identifier of the text summary"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Text summary retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextSummaryResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication token"
+          },
+          "403": {
+            "description": "Forbidden - Insufficient role permissions (requires admin or same user)"
+          },
+          "404": {
+            "description": "Not found - Text summary with given ID does not exist"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing text summary by ID",
+        "tags": [
+          "TextSummary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique identifier of the text summary to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextSummaryUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Text summary updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextSummaryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Validation failed for request body"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication token"
+          },
+          "403": {
+            "description": "Forbidden - Insufficient role permissions (requires admin or same user)"
+          },
+          "404": {
+            "description": "Not found - Text summary with given ID does not exist"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a text summary by ID",
+        "tags": [
+          "TextSummary"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique identifier of the text summary to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Text summary deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication token"
+          },
+          "403": {
+            "description": "Forbidden - Insufficient role permissions (requires admin)"
+          },
+          "404": {
+            "description": "Not found - Text summary with given ID does not exist"
+          }
+        }
+      }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "summary": "Retrieve details of a specific user by ID",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Unique identifier of the user to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User details retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDetailsResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication token"
+          },
+          "403": {
+            "description": "Forbidden - Insufficient permissions (requires admin or same user)"
+          },
+          "404": {
+            "description": "Not found - User with given ID does not exist"
+          }
+        }
+      }
+    }
+  },
   "tags": []
 }
