@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/api/v1/models/responseModel.ts</title>
+    <title>Code coverage report for src/api/v1/routes/adminRoutes.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/api/v1/models</a> responseModel.ts</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/api/v1/routes</a> adminRoutes.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -104,7 +104,11 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,10 +126,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -137,55 +137,55 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * Interface representing a standard API response
- * @template T - The type of the data property
- */
-interface ApiResponse&lt;T&gt; {
-    status?: string;
-    data?: T;
-    message?: string;
-    error?: { message: string; code?: string };
-    timestamp?: string;
-}
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import express, { Router } from "express";
+import { setCustomClaims } from "../controllers/adminController";
+import authenticate from "../middleware/authenticate";
+&nbsp;
+const router: Router = express.Router();
 &nbsp;
 /**
- * Creates a success response object
- * @param data - The data to include in a response
- * @param message - A message providing additional information about the response
- * @returns
+ * @openapi
+ * /api/v1/admin/setCustomClaims:
+ *   post:
+ *     summary: Set custom claims on a user's authentication token
+ *     tags: [Admin]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/validations/SetCustomClaimsRequest'
+ *     responses:
+ *       '200':
+ *         description: Custom claims set successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/validations/SetCustomClaimsResponse'
+ *       '401':
+ *         description: Unauthorized - Invalid or missing authentication token
+ *       '403':
+ *         description: Forbidden - Insufficient permissions to set custom claims
+ *       '404':
+ *         description: Not found - Target user does not exist
  */
-export const successResponse = &lt;T&gt;(
-    data: T,
-    message?: string
-): ApiResponse&lt;T&gt; =&gt; ({
-    message,
-    data,
-});
+router.post(
+    "/setCustomClaims",
+    authenticate,
+    setCustomClaims
+);
 &nbsp;
-/**
- * Creates a standardized error response object
- * Ensures ann API errors follow the same format
- * @param message - The error message
- * @param code - Optional error code for debugging
- * @returns
- */
-export const errorResponse = <span class="fstat-no" title="function not covered" >(</span>
-    message: string,
-    code?: string
-): ApiResponse&lt;null&gt; =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
-    status: "error",
-    error: { message, code },
-    timestamp: new Date().toISOString(),
-});
+export default router;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -193,7 +193,7 @@ export const errorResponse = <span class="fstat-no" title="function not covered"
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-04-12T21:50:49.865Z
+                at 2026-04-12T21:55:17.643Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

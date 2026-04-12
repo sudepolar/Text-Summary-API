@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "types": ["jest"],
         "target": "ES6",
         "moduleResolution": "node",
         "module": "commonjs",
@@ -20,6 +21,6 @@
             "*": ["*"]
         }
     },
-    "include": ["src/**/*", "test/**/*", "config/**/*"],
+    "include": ["src/**/*", "test/**/*", "config/**/*", "backend/**/*"],
     "exclude": ["node_modules", "dist"]
 }
