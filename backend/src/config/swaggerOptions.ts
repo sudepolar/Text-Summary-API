@@ -30,7 +30,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
             },
         ],
     },
-    apis: ["./api/v1/routes/*.ts", "./api/v1/validations/*.ts"], // Path to the API docs and schemas
+    apis: ["./backend/src/api/v1/routes/*.ts", "./backend/src/api/v1/validations/*.ts"], // Path to the API docs and schemas
 };
 
 // Generate the Swagger spec
