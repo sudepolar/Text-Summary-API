@@ -18,6 +18,145 @@
         "scheme": "bearer",
         "bearerFormat": "JWT"
       }
+    },
+    "schemas": {
+      "CreateTextSummaryRequest": {
+        "type": "object",
+        "required": [
+          "textContent"
+        ],
+        "properties": {
+          "textContent": {
+            "type": "string",
+            "description": "The text content to be summarized",
+            "example": "This is how to make a furry suit lol"
+          }
+        }
+      },
+      "UpdateTextSummaryRequest": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "description": "The updated summary of the text content",
+            "example": "A brief summary of the original text content."
+          }
+        }
+      },
+      "UpdateTextSummaryParams": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the text summary to update",
+            "example": "text_abc123"
+          }
+        }
+      },
+      "TextSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the text summary",
+            "example": "text_abc123"
+          },
+          "summary": {
+            "type": "string",
+            "description": "The generated summary of the text content",
+            "example": "A brief summary of the original text content."
+          }
+        }
+      },
+      "TextSummaryListResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier of the text summary",
+              "example": "text_abc123"
+            },
+            "summary": {
+              "type": "string",
+              "description": "The generated summary of the text content",
+              "example": "A brief summary of the original text content."
+            }
+          }
+        }
+      },
+      "TextSummaryUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string",
+            "description": "The updated summary of the text content",
+            "example": "Updated summary text."
+          }
+        }
+      },
+      "SetCustomClaimsRequest": {
+        "type": "object",
+        "required": [
+          "uid",
+          "role"
+        ],
+        "properties": {
+          "uid": {
+            "type": "string",
+            "description": "The user ID to set custom claims on",
+            "example": "user_abc123"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "admin"
+            ],
+            "description": "The role to assign to the user",
+            "example": "admin"
+          }
+        }
+      },
+      "SetCustomClaimsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Success message",
+            "example": "Custom claims set successfully"
+          }
+        }
+      },
+      "UserDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "uid": {
+            "type": "string",
+            "description": "Unique identifier for the user",
+            "example": "user_abc123"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address",
+            "example": "user@example.com"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "admin"
+            ],
+            "description": "User's role in the system",
+            "example": "admin"
+          }
+        }
+      }
     }
   },
   "security": [
@@ -42,7 +181,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/validations/SetCustomClaimsRequest"
+                "$ref": "#/components/schemas/SetCustomClaimsRequest"
               }
             }
           }
@@ -53,7 +192,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/validations/SetCustomClaimsResponse"
+                  "$ref": "#/components/schemas/SetCustomClaimsResponse"
                 }
               }
             }
@@ -87,7 +226,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/validations/TextSummaryListResponse"
+                  "$ref": "#/components/schemas/TextSummaryListResponse"
                 }
               }
             }
@@ -133,7 +272,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/validations/TextSummaryResponse"
+                  "$ref": "#/components/schemas/TextSummaryResponse"
                 }
               }
             }
@@ -178,7 +317,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/validations/TextSummaryResponse"
+                  "$ref": "#/components/schemas/TextSummaryResponse"
                 }
               }
             }
@@ -220,7 +359,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/validations/TextSummaryUpdateRequest"
+                "$ref": "#/components/schemas/TextSummaryUpdateRequest"
               }
             }
           }
@@ -231,7 +370,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/validations/TextSummaryResponse"
+                  "$ref": "#/components/schemas/TextSummaryResponse"
                 }
               }
             }
@@ -315,7 +454,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/validations/UserDetailsResponse"
+                  "$ref": "#/components/schemas/UserDetailsResponse"
                 }
               }
             }

@@ -33,6 +33,40 @@ import { RequestSchema } from "../middleware/validate";
  *           type: string
  *           description: The unique identifier of the text summary to update
  *           example: "text_abc123"
+ *
+ *     TextSummaryResponse:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: Unique identifier of the text summary
+ *           example: "text_abc123"
+ *         summary:
+ *           type: string
+ *           description: The generated summary of the text content
+ *           example: "A brief summary of the original text content."
+ *
+ *     TextSummaryListResponse:
+ *       type: array
+ *       items:
+ *         type: object
+ *         properties:
+ *           id:
+ *             type: string
+ *             description: Unique identifier of the text summary
+ *             example: "text_abc123"
+ *           summary:
+ *             type: string
+ *             description: The generated summary of the text content
+ *             example: "A brief summary of the original text content."
+ *
+ *     TextSummaryUpdateRequest:
+ *       type: object
+ *       properties:
+ *         summary:
+ *           type: string
+ *           description: The updated summary of the text content
+ *           example: "Updated summary text."
  */
 export const itemSchemas: Record<string, RequestSchema> = {
     // POST /api/v1/text-summary - Create new Item
