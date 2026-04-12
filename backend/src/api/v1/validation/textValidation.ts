@@ -34,9 +34,6 @@ import { RequestSchema } from "../middleware/validate";
  *           description: The unique identifier of the text summary to update
  *           example: "text_abc123"
  */
-/**
- * Item schema organised by request type
- */
 export const itemSchemas: Record<string, RequestSchema> = {
     // POST /api/v1/text-summary - Create new Item
     create: {

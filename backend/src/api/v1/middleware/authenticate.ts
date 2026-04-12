@@ -33,7 +33,7 @@ const authenticate = async (
 
         const decodedToken: DecodedIdToken = await auth.verifyIdToken(token);
 
-        // storing the user's id and role in the resposne for use in other middleware or routes
+        // storing the user's id and role in the response for use in other middleware or routes
         res.locals.uid = decodedToken.uid;
         res.locals.role = decodedToken.role;
 
