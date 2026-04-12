@@ -29,7 +29,6 @@ const router: Router = express.Router();
  *       '403':
  *         description: Forbidden - Insufficient role permissions (requires admin)
  */
-// "/api/v1/text-summary" prefixes all below routes
 router.get("/",
     authenticate,
     isAuthorized({ hasRole: ["admin",]} as AuthorizationOptions),
@@ -75,7 +74,7 @@ router.post(
     isAuthorized({ hasRole: ["admin", "user"]} as AuthorizationOptions),
     textController.createText);
 
-    /**
+/**
  * @openapi
  * /api/v1/text-summary/{id}:
  *   get:
