@@ -3,9 +3,6 @@ name: Deploy Documentation
 on:
     workflow_dispatch: # Only run when manually triggered
 
-permissions:
-    contents: write
-
 jobs:
     deploy-docs:
         runs-on: ubuntu-latest
