@@ -1,6 +1,8 @@
 import express, { Router } from "express";
 import { setCustomClaims } from "../controllers/adminController";
 import authenticate from "../middleware/authenticate";
+import { setCustomClaimsSchema } from "../validation/userValidation";
+import { validateRequest } from "../middleware/validate";
 
 const router: Router = express.Router();
 
@@ -35,6 +37,7 @@ const router: Router = express.Router();
 router.post(
     "/setCustomClaims",
     authenticate,
+    validateRequest(setCustomClaimsSchema),
     setCustomClaims
 );
 
