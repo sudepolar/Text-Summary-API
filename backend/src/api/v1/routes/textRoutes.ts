@@ -69,9 +69,9 @@ router.get("/",
  */
 router.post(
     "/",
-    upload.single('file'),
     authenticate,
     isAuthorized({ hasRole: ["admin", "user"]} as AuthorizationOptions),
+    upload.single('file'),
     textController.createText);
 
 /**
