@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1776030917686" clover="3.2.0">
-  <project timestamp="1776030917686" name="All files">
-    <metrics statements="152" coveredstatements="130" conditionals="30" coveredconditionals="6" methods="27" coveredmethods="21" elements="209" coveredelements="157" complexity="0" loc="152" ncloc="152" packages="6" files="10" classes="10"/>
+<coverage generated="1777003385308" clover="3.2.0">
+  <project timestamp="1777003385308" name="All files">
+    <metrics statements="165" coveredstatements="143" conditionals="30" coveredconditionals="6" methods="27" coveredmethods="21" elements="222" coveredelements="170" complexity="0" loc="165" ncloc="165" packages="6" files="11" classes="11"/>
     <package name="src">
-      <metrics statements="19" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="27" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="app.ts" path="C:\Users\emnac\Desktop\code\text-summary-api\backend\src\app.ts">
-        <metrics statements="19" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="27" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.api.v1.controllers">
@@ -98,15 +106,17 @@
       </file>
     </package>
     <package name="src.api.v1.routes">
-      <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="29" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="adminRoutes.ts" path="C:\Users\emnac\Desktop\code\text-summary-api\backend\src\api\v1\routes\adminRoutes.ts">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
       </file>
       <file name="textRoutes.ts" path="C:\Users\emnac\Desktop\code\text-summary-api\backend\src\api\v1\routes\textRoutes.ts">
         <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -126,13 +136,14 @@
         <line num="192" count="1" type="stmt"/>
       </file>
       <file name="userRoutes.ts" path="C:\Users\emnac\Desktop\code\text-summary-api\backend\src\api\v1\routes\userRoutes.ts">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.api.v1.services">
@@ -188,11 +199,16 @@
       </file>
     </package>
     <package name="src.api.v1.validation">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="textValidation.ts" path="C:\Users\emnac\Desktop\code\text-summary-api\backend\src\api\v1\validation\textValidation.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+      </file>
+      <file name="userValidation.ts" path="C:\Users\emnac\Desktop\code\text-summary-api\backend\src\api\v1\validation\userValidation.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.constants">
