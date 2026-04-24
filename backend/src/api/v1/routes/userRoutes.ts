@@ -25,7 +25,7 @@ const router: Router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/userDetailsResponse'
+ *               $ref: '#/components/schemas/UserDetailsResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
  *       '403':
