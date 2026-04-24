@@ -10,7 +10,6 @@ const isAuthorized = (
 ): MiddlewareFunction => {
     return (req: Request, res: Response, next: NextFunction) => {
         try {
-            console.log('res.locals:', res.locals);
             const { role, uid } = res.locals;
             const { id } = req.params;
 

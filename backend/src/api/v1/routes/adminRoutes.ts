@@ -17,14 +17,14 @@ const router: Router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/validations/SetCustomClaimsRequest'
+ *             $ref: '#/components/schemas/SetCustomClaimsRequest'
  *     responses:
  *       '200':
  *         description: Custom claims set successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/SetCustomClaimsResponse'
+ *               $ref: '#/components/schemas/SetCustomClaimsResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
  *       '403':

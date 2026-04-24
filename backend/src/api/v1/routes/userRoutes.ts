@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import { getUserDetails } from "../controllers/userController";
 import authenticate from "../middleware/authenticate";
-//import isAuthorized from "../middleware/authorize";
+import isAuthorized from "../middleware/authorize";
 
 const router: Router = express.Router();
 
@@ -26,7 +26,7 @@ const router: Router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/validations/UserDetailsResponse'
+ *               $ref: '#/components/schemas/UserDetailsResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
  *       '403':
@@ -37,7 +37,7 @@ const router: Router = express.Router();
 router.get(
     "/:id",
     authenticate,
-    //isAuthorized({ hasRole: ["admin"], allowSameUser: true }),
+    isAuthorized({ hasRole: ["admin"], allowSameUser: true }),
     getUserDetails
 );
 
