@@ -2,7 +2,6 @@ import express, { Router } from "express";
 import { getUserDetails } from "../controllers/userController";
 import authenticate from "../middleware/authenticate";
 import isAuthorized from "../middleware/authorize";
-
 const router: Router = express.Router();
 
 /**
@@ -26,7 +25,7 @@ const router: Router = express.Router();
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/UserDetailsResponse'
+ *               $ref: '#/components/schemas/userDetailsResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
  *       '403':

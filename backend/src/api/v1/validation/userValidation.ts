@@ -1,5 +1,5 @@
 import Joi from "joi";
-
+import { RequestSchema } from "../middleware/validate";
 /**
  * @openapi
  * components:
@@ -44,7 +44,9 @@ import Joi from "joi";
  *           description: User's role in the system
  *           example: "admin"
  */
-export const setCustomClaimsSchema = Joi.object({
-    uid: Joi.string().required(),
-    role: Joi.string().valid("user", "admin").required(),
-});
+export const setCustomClaimsSchema: RequestSchema = {
+    body: Joi.object({
+        uid: Joi.string().required(),
+        role: Joi.string().valid("user", "admin").required(),
+    }),
+};

@@ -1,13 +1,21 @@
 // import the express application and type definition
 import express, { Express } from "express";
+import helmet from "helmet";
+import cors from "cors";
 import morgan from "morgan";
 import textRoutes from "./api/v1/routes/textRoutes";
 import adminRoutes from "./api/v1/routes/adminRoutes";
 import userRoutes from "./api/v1/routes/userRoutes";
 import setupSwagger from "./config/swagger";
+import { getHelmetConfig } from "./config/helmetConfig";
+import getCorsOptions from "./config/corsConfig";
 // initialize the express application
 const app: Express = express();
 
+app.use(cors(getCorsOptions()));
+app.use(getHelmetConfig());
+app.use(helmet());
+app.use(cors());
 // Setup Swagger
 setupSwagger(app);
 

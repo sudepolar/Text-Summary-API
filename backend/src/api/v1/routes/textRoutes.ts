@@ -26,6 +26,8 @@ const router: Router = express.Router();
  *               $ref: '#/components/schemas/TextSummaryListResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
+ *       '400':
+ *         description: Unauthorized - Invalid token
  *       '403':
  *         description: Forbidden - Insufficient role permissions (requires admin)
  */
@@ -69,9 +71,9 @@ router.get("/",
  */
 router.post(
     "/",
-    upload.single('file'),
     authenticate,
     isAuthorized({ hasRole: ["admin", "user"]} as AuthorizationOptions),
+    upload.single('file'),
     textController.createText);
 
 /**
@@ -95,7 +97,6 @@ router.post(
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/TextSummaryResponse'
  *       '401':
  *         description: Unauthorized - Invalid or missing authentication token
  *       '403':
@@ -131,7 +132,7 @@ router.get("/:id",
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/TextSummaryUpdateRequest'
+ *               $ref: '#/components/schemas/TextSummaryUpdateRequest'
  *     responses:
  *       '200':
  *         description: Text summary updated successfully
