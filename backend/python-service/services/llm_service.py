@@ -11,7 +11,7 @@ async def generate_summary(text: str) -> str:
     series = pd.Series([text])
     cleaned = series.str.strip().str.replace(r'\s+', ' ', regex=True)[0]
 
-    client = AsyncClient()
+    client = AsyncClient(host="http://127.0.0.1:11434")
     response = await client.chat(
         model="llama3.1:8b",
         messages=[
