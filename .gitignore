@@ -25,3 +25,8 @@ backend/python-service/.env
 
 **/serviceAccount.json
 serviceAccount.json
+# Firebase service account keys
+*adminsdk*.json
+
+# Test coverage output
+coverage/
